@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Templating comparison: handlebars.js</title>
+        <link href="../css/templates.css" media="screen, projection" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="../js/jquery.js"></script>
+        <script type="text/javascript" src="../js/underscore.js"></script>
+        <script type="text/javascript" src="../js/backbone.js"></script>
+        <script type="text/javascript" src="../js/handlebars.js"></script>
+        <script type="text/javascript" src="../js/tests/test-handlebars.js"></script>
+        <script type="text/javascript" src="../data/sample-data-2.json"></script>
+    </head>
+    <body>
+        <div id="view">
+            <div id="article">
+                <h1>Templating comparison: handelbars.js</h1>
+                <dl id="info">
+                    <dt>Link:</dt>
+                    <dd><a href="http://www.handlebarsjs.com/">http://www.handlebarsjs.com/</a></dd>
+                    <dt>Version:</dt>
+                    <dd>1.0.0.beta.4 (or is it .2? - comments in code not updated)</dd>
+                    <dt>Size minified:</dt>
+                    <dd>29kb (compressed from source using closure compiler)</dd>
+                    <dt>Last updated:</dt>
+                    <dd class="active">1 day ago</dd>
+                </dl>
+                <p class="nb">Last updated times where taken from github on 7th December 2011</p>
+                <h2>Pros:</h2>
+                <ul>
+                    <li>Nice template syntax, not super keen on the double braces but I can live with it.</li>
+                    <li>Pretty fast, compiling takes most of the time, so with the correct strategy I think this could be very performant.</li>
+                    <li>The ability to register yout own helpers allows great flexibility in interpreting data though it does start to blur the liens between pure templating and programatically generating mark up in my mind.</li>
+                    <li>Clear documentation though I had some trouble implementing the helpers as specified.</li>
+                </ul>
+                <h2>Cons:</h2>
+                <ul>
+                    <li>Again we needed to use our revised data structure here but as mentioned with Dust, this is maybe a good thing.</li>
+                    <li>Our comma seperated list helper was pretty much a pure JavaScript method to create a block of html and return it into the template. Okay we can dump all these methods into one place and maintain some level of abstraction but it feels a little bit at odds to use method to call a template to call a method. Perhaps this could be done better with further understainding.</li>
+                    <li>As per Dust some implicit knowledge of the data is required though custom helpers could be used where true dynamism is required.</li>
+                </ul>
+                <h2>The results</h2>
+                <dl>
+                    <dt>Render the template from our JSON</dt>
+                    <dd>Fail, we had to use the altarnative data set again.</dd>
+                    <dt>Include sub templates</dt>
+                    <dd>Very simple.</dd>
+                    <dt>Escape and not evaluate an injected JavaScript string</dt>
+                    <dd>Comes for free, can be prevented with '{{{...}}}'.</dd>
+                </dl>
+                <h2>The template</h2>
+                <pre id="template">
+                </pre>
+                <h2>The snippet</h2>
+                <pre id="snippet">
+                </pre>
+                <h2>The output</h2>
+                <p>Time to run 100x in ms: <span id="time"></span></p>
+                <button id="run">run test</button>
+                <div id="output">
+                </div>
+                <h2>The Tests</h2>            
+                <ul>
+                    <li><a href="../index.html">home</li>
+                    <li><a href="underscore.html">underscore</a></li>
+                    <li><a href="dust.html">dust</a></li>
+                    <li><a href="jade.html">jade</a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

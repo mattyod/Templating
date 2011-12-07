@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Templating comparison: dust.js</title>
+        <link href="../css/templates.css" media="screen, projection" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="../js/jquery.js"></script>
+        <script type="text/javascript" src="../js/underscore.js"></script>
+        <script type="text/javascript" src="../js/backbone.js"></script>
+        <script type="text/javascript" src="../js/dust.js"></script>
+        <script type="text/javascript" src="../js/tests/test-dust.js"></script>
+        <script type="text/javascript" src="../data/sample-data-2.json"></script>
+    </head>
+    <body>
+        <div id="view">
+            <div id="article">
+                <h1>Templating comparison: dust.js</h1>
+                 <dl id="info">
+                    <dt>Link:</dt>
+                    <dd><a href="http://akdubya.github.com/dustjs/">http://akdubya.github.com/dustjs/</a></dd>
+                    <dt>Version:</dt>
+                    <dd>0.3.0</dd>
+                    <dt>Size minified:</dt>
+                    <dd>26kb</dd>
+                    <dt>Last updated:</dt>
+                    <dd class="active">January 26 2011</dd>
+                </dl>
+                <p class="nb">Last updated times where taken from github on 7th December 2011</p>
+                <h2>Pros:</h2>
+                <ul>
+                    <li>A nice clean syntax, feels like a proper templating language and no messy JavaScript code in amongst it.</li>
+                    <li>Templates could be compiled once server side (Node) and sent to the client as a package for rendering.</li>
+                    <li>Some nice helpers such as {@sep} which helped add commas to all but the last fish.</li>
+                </ul>
+                <h2>Cons:</h2>
+                <ul>
+                    <li>Very terse documentation, even having used Dust quite extensively several months ago I struggled to get things up and running. Once acheived though things go quite quickly.</li>
+                    <li>No way that I was able to discern of accessing keys within data, so the JSON object needed to be rebuilt with certain attributes moved into values. Perhaps this is best though, see "Pros".</li>
+                    <li>The data is more implicityly tied to our template, we need to have expectations of what data keys will be available to us. You could potentaily end up adding a lot of checks within your template if your data is highly variable.</li>                
+                    <li>Compiling templates on the client adds a process overhead (and code weight) but rendering speeds fast fast.</li>
+                    <li>Full dust.js including compile is fair sized file at 26kb.</li>
+                    <li>Quite a while since an update on this and there are a few pull requests lying dormant.</li>
+                </ul>
+                <h2>The results</h2>
+                <dl>
+                    <dt>Render the template from our JSON</dt>
+                    <dd>Fail. Had to adjust the JSON data structure to output template. Though some might argue that the new data structure is a more logical deployment with keys being left purely for data organisation.</dd>
+                    <dt>Include sub templates</dt>
+                    <dd>Easy as could be.</dd>
+                    <dt>Escape and not evaluate an injected JavaScript string</dt>
+                    <dd>Automatically catered for.</dd>
+                </dl>
+                <h2>The template</h2>
+<pre id="template">
+{?people} 
+  &lt;h3&gt;People&lt;/h3&gt; 
+  &lt;ul&gt; 
+    {#people} 
+      &lt;li&gt;{name} 
+        &lt;ul&gt; 
+          &lt;li&gt;{age}&lt;/li&gt; 
+          &lt;li&gt;{sex}&lt;/li&gt; 
+          &lt;li&gt;{hair}&lt;/li&gt; 
+        &lt;/ul&gt; 
+      &lt;/li&gt; 
+    {/people} 
+  &lt;/ul&gt; 
+{/people} 
+{?dogs} 
+  &lt;h3&gt;Dogs&lt;/h3&gt; 
+  &lt;ul&gt; 
+    {#dogs} 
+    &lt;li&gt;{name} 
+       {?age} 
+        &lt;ul&gt; 
+          &lt;li&gt;{age}&lt;/li&gt; 
+          &lt;li&gt;{sex}&lt;/li&gt; 
+          &lt;li&gt;{colour}&lt;/li&gt; 
+        &lt;/ul&gt; 
+       {/age} 
+      &lt;/li&gt; 
+    {/dogs} 
+  &lt;/ul&gt; 
+{/dogs} 
+{?cats} 
+  &lt;h3&gt;Cats&lt;/h3&gt; 
+{/cats} 
+{?fish} 
+  {&gt;snippet:./} 
+{/fish}
+</pre>
+                <h2>The snippet</h2>
+<pre id="snippet">
+&lt;p&gt;A list of fish:
+    {#fish}
+        {.}{@sep}, {/sep}
+    {/fish}
+&lt;/p&gt;
+</pre>
+                <h2>The output</h2>
+                <p>Time to run 100x in ms: <span id="time"></span></p>
+                <button id="run">run test</button>
+                <div id="output">
+                </div>
+                <h2>The Tests</h2>            
+                <ul>
+                    <li><a href="../index.html">home</li>
+                    <li><a href="underscore.html">underscore</a></li>
+                    <li><a href="handlebars.html">handlebars</a></li>
+                    <li><a href="jade.html">jade</a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

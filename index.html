@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Templating comparison</title>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/underscore.js"></script>
+        <script type="text/javascript" src="js/backbone.js"></script>
+        <link href="css/templates.css" media="screen, projection" rel="stylesheet" type="text/css" />        
+    </head>
+    <body>
+        <div id="view">
+            <div id="article">
+                <h1>Templating comparison</h1>
+                <p>An analysis of client side templating scripts.</p>
+                <h2>The Tests</h2>
+                <p>Each templating language will attempt to compile this json file into a HTML template</h2>
+                <ul>
+                    <li><a href="tests/underscore.html">underscore</a></li>
+                    <li><a href="tests/dust.html">dust</a></li>
+                    <li><a href="tests/handlebars.html">handlebars</a></li>
+                    <li><a href="tests/jade.html">jade</a></li>
+                </ul>
+                <h2>The Requirements</h2>
+                <p>Each templating engine should be able to:</p>
+                <ul>
+                    <li>Render the complete file</li>
+                    <li>Include sub templates</li>
+                    <li>Escape and not evaluate an injected JavaScript string</li>
+                </ul>
+                <h2>The Goal</h2>
+                <p>Assessment will be based on the following:</p>
+                <ul>
+                    <li>Performance, performance, performance...</li>
+                    <li>Ease of implementation</li>
+                    <li>Flexibility</li>
+                    <li>Aesthetics of syntax</li>
+                    <li>File size</li>
+                </ul>
+                <h2>Other references</h2>
+                <ul>
+                    <li><a href="http://jsperf.com/dom-vs-innerhtml-based-templating/277">JSPerf benchmarking page (277)</a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
