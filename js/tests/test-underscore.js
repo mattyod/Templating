@@ -33,12 +33,7 @@ var getSnippet = function(data) {
   return _.template(snippet, data);
 };
 
-$(function(){
-  // Put data into a backbone model
-  var Test = Backbone.Model.extend(data);
-  
-  var test = new Test();
-  
+$(function() {
   // Create view
   var TestView = Backbone.View.extend({
     el: '#run',

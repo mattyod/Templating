@@ -36,7 +36,7 @@ var data = {
       "Snowy": {
         "age": 7,
         "sex": "female",
-        "colour": "<script type='text/javascript'>alert('woof')</script>"
+        "colour": "<script type='text/javascript'>alert('woof');</script>"
       },
       "Max": {}
     },
