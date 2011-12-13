@@ -1,5 +1,5 @@
 - for (var item in data.data)
-  - if (!$.isArray(data.data[item]))
+  - if (!data.data[item].length && !_.isEmpty(data.data[item]))
     h3= item
     ul
       - for (var name in data.data[item])
@@ -8,5 +8,5 @@
             - for (var attribute in data.data[item][name])
               li= data.data[item][name][attribute]
   - else
-    //- ! Do not escape the snippet it is already escaped
-    != snippet()
+    if (item === 'fish')
+      include snippet
