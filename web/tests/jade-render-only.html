@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Templating comparison: jade.js</title>
+        <link href="../css/templates.css" media="screen, projection" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="../js/jquery.js"></script>
+        <script type="text/javascript" src="../js/underscore.js"></script>
+        <script type="text/javascript" src="../js/backbone.js"></script>
+        <script type="text/javascript" src="../js/jade.js"></script>
+        <script type="text/javascript" src="../js/tests/test-jade-ss.js"></script>
+        <script type="text/javascript" src="../data/sample-data.json"></script>
+    </head>
+    <body>
+        <div id="view">
+            <div id="article">
+                <h1>Templating comparison: jade.js (render only)</h1>
+                <dl id="info">
+                    <dt>Link:</dt>
+                    <dd><a href="http://jade-lang.com/">http://jade-lang.com/</a></dd>
+                    <dt>Version:</dt>
+                    <dd>0.3.0 (This is a very old copy I found pre made, see Cons)</dd>
+                    <dt>Size minified:</dt>
+                    <dd>23kb (<em>UN</em>compressed as closure threw an error)</dd>
+                    <dt>Last updated:</dt>
+                    <dd class="active">4 days ago</dd>
+                </dl>
+                <p class="nb">Last updated times where taken from github on 7th December 2011</p>
+                <h2>With server side template compilation</h2>
+                <p>In this example our templates are rendered on a Node service and fed to the client after DOM ready.</p>
+                <h2>Pros:</h2>  
+                <ul>
+                    <li>Nice HAML like syntax.</li>
+                    <li>Good performance.</li>
+                    <li>Flexible with various syntax styles and the ability to mix and match in JavaScript</li>
+                </ul>
+                <h2>Cons:</h2>
+                <ul>
+                    <li>Need to "make" the client side code, which is a bit awkward on Windows. (I had permission issues installing software on my machine and ended up using a copy I found online).</li>
+                    <li>Jade client errors on IE&lt;9 and the developer doesn't seem particularly interested in addressing that. <a href="https://github.com/visionmedia/jade/issues/254">https://github.com/visionmedia/jade/issues/254</a>. This could be worked around but I don't know if that's a great idea.</li>
+                    <li>The strict white space rules of the syntax made it difficult to include the template directly in JavaScript and instead was placed into the mark up. This could be addressed by say calling the templates with an ajax request but would potentially have a performance impact.</li>
+                </ul>
+                <h2>The results</h2>
+                <dl>
+                    <dt>Render the template from our JSON</dt>
+                    <dd>No problems here, the mix of standard template structure and JavaScript provides flexible access to the object.</dd>
+                    <dt>Include sub templates</dt>
+                    <dd>This was a little awkward and has perhaps not been implemented in the best way. In doing this I got the strong feeling that jade is very much designed to work on Node and that the client side rendering is not it's main purpose.</dd>
+                    <dt>Escape and not evaluate an injected JavaScript string</dt>
+                    <dd>Comes as default. in fact with my perhaps less than ideal implementation of a sub template we had to specify not to escape it in the main template, otherwise the mark up became escaped as well.</dd>
+                </dl>
+                <h2>The template</h2>
+<pre id="template">
+- for (var item in data.data)
+  - if (!$.isArray(data.data[item]))
+    h3= item
+    ul
+      - for (var name in data.data[item])
+        li= name 
+          ul 
+            - for (var attribute in data.data[item][name])
+              li= data.data[item][name][attribute]
+  - else
+    //- ! Do not escape the snippet it is already escaped
+    != snippet()
+</pre>
+            <h2>The snippet</h2>
+<pre id="snippet">
+p A list of fish: 
+  - var fishCount = data.data.fish.length
+  - each fish, count in data.data.fish
+    = fish
+    - if (count !== (fishCount -1))
+      , 
+  .
+</pre>
+                <h2>The output</h2>
+                <p>Time to run 100x in ms: <span id="time"></span></p>
+                <button id="run">run test</button>
+                <div id="output">
+                </div>
+                <h2>The Tests</h2>            
+                <ul>
+                    <li><a href="../index.html">home</a></li>
+                    <li><a href="underscore.html">underscore</a></li>
+                    <li><a href="dust.html">dust</a></li>
+                    <li><a href="handlebars.html">handlebars</a></li>
+                    <li><a href="dot.html">doT</a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html> 

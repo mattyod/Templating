@@ -23,6 +23,7 @@ app.get('*', function(req, res) {
         
     } else {
       console.log('File does not exist: ', req.url.substr(1));
+      res.send('File not found.', 404);
     }
   });
 });
