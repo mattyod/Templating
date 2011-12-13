@@ -15,7 +15,9 @@
     
     $ git clone http://github.com/mattyod/Templating
 
-    Navigate to that folder and type: node server.js
+    Navigate to that folder and type:
+    
+    node server.js
 
     You should then get a message: 'Server running on port 3000'
 
