@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Templating comparison: underscore.js</title>
+        <link href="../css/templates.css" media="screen, projection" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="../js/jquery.js"></script>
+        <script type="text/javascript" src="../js/underscore.js"></script>
+        <script type="text/javascript" src="../js/backbone.js"></script>
+        <script type="text/javascript" src="../js/tests/test-underscore.js"></script>
+        <script type="text/javascript" src="../data/sample-data.json"></script>     
+    </head>
+    <body>
+        <div id="view">
+            <div id="article">
+                <h1>Templating comparison: underscore.js</h1>
+                <dl id="info">
+                    <dt>Link:</dt>
+                    <dd><a href="http://documentcloud.github.com/underscore/">http://documentcloud.github.com/underscore/</a></dd>
+                    <dt>Version:</dt>
+                    <dd>1.2.2</dd>
+                    <dt>Size minified:</dt>
+                    <dd>12kb</dd>
+                    <dt>Last updated:</dt>
+                    <dd class="active">About 15 hours ago</dd>
+                </dl>
+                <p class="nb">Last updated times where taken from github on 7th December 2011</p>
+                <h2>Pros:</h2>
+                <ul>
+                    <li>Lightweight, in fact it comes for free if we are using Backbone as underscore is already a dependency.</li>
+                    <li>Can use native JS and underscore methods to perform tasks such as looping etc, though this does present some issues, (see cons).</li>
+                    <li>As we can use native JavaScript iterators it allows us to be quite dynamic, we can render an object into a template even though we don't know what the object contains. In this example we could add any top level node and that would be rendered as well.</li>
+                    <li>Very fast.</li>
+                </ul>
+                <h2>Cons:</h2>
+                <ul>
+                    <li>All the JavaScript you write is escaped and therefore you get no syntax highlighting in your editor. This makes it quite easy to miss-type your code and frustratingly difficult to debug as all errors are only thrown within underscore itself.</li>
+                    <li>Had some problems handling white space in the fish list which meant the template was not formatted as desired.</li>
+                    <lI>In general trying to format multi line strings like this in JavaScript and keeping it readable is something of a challenge and a frustration.</li>
+                    <li>A lot of logic is getting inbedded into the template making it quite messy, n.b. the fish list from and array with punctuation</li>
+                </ul>
+                <h2>The results</h2>
+                <dl>
+                    <dt>Render the template:</dt>
+                    <dd>Success and very fast</dd>
+                    <dt>Include sub templates:</dt>
+                    <dd>Quite trivial to acheive with a simple JavaScript call to a method</dd>
+                    <dt>Escape JavaScript strings:</dt>
+                    <dd>Need to specify in your syntax &lt;%- rather than &lt;%= </dd>
+                </dl>
+                <h2>The template</h2>
+                <pre id="template">
+                </pre>
+                <h2>The snippet</h2>
+                <pre id="snippet">
+                </pre>
+                <h2>The output</h2>
+                <p>Time to run 100x in ms: <span id="time"></span></p>
+                <button id="run">run test</button>
+                <div id="output">
+                </div>
+                <h2>The Tests</h2>            
+                <ul>
+                    <li><a href="../index.html">home</a></li>
+                    <li><a href="dust.html">dust</a></li>
+                    <li><a href="handlebars.html">handlebars</a></li>
+                    <li><a href="jade.html">jade</a></li>
+                    <li><a href="dot.html">doT</a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

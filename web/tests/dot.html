@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Templating comparison: doT.js</title>
+        <link href="../css/templates.css" media="screen, projection" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="../js/sizzle.js"></script>
+        <script type="text/javascript" src="../js/jquery.js"></script>
+        <script type="text/javascript" src="../js/underscore.js"></script>
+        <script type="text/javascript" src="../js/backbone.js"></script>
+        <script type="text/javascript" src="../js/dot.js"></script>
+        <script type="text/javascript" src="../js/tests/test-dot.js"></script>
+        <script type="text/javascript" src="../data/sample-data.json"></script>     
+    </head>
+    <body>
+        <div id="view">
+            <div id="article">
+                <h1>Templating comparison: doT.js</h1>
+                <dl id="info">
+                    <dt>Link:</dt>
+                    <dd><a href="http://olado.github.com/doT/">http://olado.github.com/doT/</a></dd>
+                    <dt>Version:</dt>
+                    <dd>0.1.6</dd>
+                    <dt>Size minified:</dt>
+                    <dd>1.7kb (compressed with Closure)</dd>
+                    <dt>Last updated:</dt>
+                    <dd class="active">October 19 2011</dd>
+                </dl>
+                <p class="nb">Last updated times where taken from github on 12th December 2011</p>
+                <h2>Pros:</h2>
+                <ul>
+                    <li>Very small and lightweight.</li>
+                    <li>Fast, very fast when using pre-compiled templates.</li>
+                    <li>Like Underscore, very flexible as you can use native JavaScript but also see Cons.</li>
+                    <li>Like many solutions, templates could be compiled on a web service such as (Node) and rendered on the client.</li>
+                </ul>
+                <h2>Cons:</h2>
+                <ul>
+                    <li>Templates are terse and flexible but get messy fast. It almost feels like you are simply writing escaped javascript. Is this really templating?</li>
+                    <lI>Similar white space issues as Underscore which can make the templates hard to read.</li>                    
+                </ul>
+                <h2>Points of interest</h2>
+                <ul>
+                    <li>No context handling. This means that all parts of an object are exposed at all times. This offers some additional power but can also lead to the template code being a bit more verbose. I suspect this helps with performance.</li>
+                    <li>Some syntax oddities encountered such as needing to include an 'else' statement on the same line as the closing brace for the if. Not game breaking but a little unintuative.</li>
+                </ul>
+                <h2>The results</h2>
+                <dl>
+                    <dt>Render the template:</dt>
+                    <dd>Yes, as you are more or less just writting snippets of JavaScript the data object can be manipulated pretty much whichever way you like.</dd>
+                    <dt>Include sub templates:</dt>
+                    <dd>Quite simple when you know how, unfortunately the documentation didn't really help me acheive this and I had to poke around the source code. Fortunately there isn't a huge amount of source code to that you have to poke around.</dd>
+                    <dt>Escape JavaScript strings:</dt>
+                    <dd>Not by default, need to use '{{! myString }} syntax. Potentail danger point here. However, doT.templateSettings can be configured quite easily to encode by default.</dd>
+                </dl>
+                <h2>The template</h2>
+<pre id="template">
+{{ for(var item in it.data) { }}
+  {{ if(typeof it.data[item] === "object" && !it.data[item].length) { }}
+    &lt;h3&gt;{{! item }}&lt;/h3&gt;
+    {{ for(var member in it.data[item]) { }}
+      &lt;ul&gt;
+        &lt;li&gt;{{! member }}
+          {{ if(it.data[item][member].sex) { }}
+            &lt;ul&gt;
+              {{ for(var attribute in it.data[item][member]) { }}
+                &lt;li&gt;{{! it.data[item][member][attribute] }}&lt;/li&gt;
+              {{ } }}
+            &lt;/ul&gt;
+          {{ } }}
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    {{ } }}
+  {{ } else { }}
+    &lt;p&gt;A list of fish:
+      {{#def.snpt}}
+    &lt;/p&gt;
+  {{ } }}
+{{ } }}
+</pre>
+                <h2>The snippet</h2>
+<pre id="snippet">
+{{ var length = it.length; }}
+{{ _.each(it, function(val, key) { }}
+  {{!val}}
+    {{ if(key &lt; (length-1)) { }}
+, 
+    {{ } }}
+  {{ }); }}
+'.'
+</pre>
+                <h2>The output</h2>
+                <p>Time to run 100x in ms: <span id="time"></span></p>
+                <button id="run">run test</button>
+                <div id="output">
+                </div>
+                <h2>The Tests</h2>            
+                <ul>
+                    <li><a href="../index.html">home</a></li>
+                    <li><a href="underscore.html">underscore</a></li>
+                    <li><a href="dust.html">dust</a></li>
+                    <li><a href="handlebars.html">handlebars</a></li>
+                    <li><a href="jade.html">jade</a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
