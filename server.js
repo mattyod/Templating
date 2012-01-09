@@ -32,7 +32,7 @@ app.get('*', function(req, res) {
   });
 });
 
-app.listen(3000);
+app.listen(1337);
 
 // We are up...
-console.log('Server running on port 3000');
+console.log('Server running on port 1337');
