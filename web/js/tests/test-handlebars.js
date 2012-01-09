@@ -37,13 +37,13 @@ var template =
 '{{/if}}';
 
 
-var snippet = 
+var snippet =
 '<p>A list of fish: \n' +
 '  {{#commaSeperatedList fish}}\n' +
 '  {{/commaSeperatedList}}.\n' +
 '</p>';
 
-$(function() {  
+$(function() {
   // Create view
   var TestView = Backbone.View.extend({
     el: '#run',
@@ -53,35 +53,35 @@ $(function() {
     },
 
     render: function() {
-      var html, start, end, count = 0;      
+      var html, start, end, count = 0;
 
-      start = new Date();     
+      start = new Date();
 
-        for(count; count < 100; count += 1) {    
-            
-        Handlebars.registerHelper('commaSeperatedList', function(context, fn) {
-          var length, list = ' ';
+      for(count; count < 100; count += 1) {
+          
+      Handlebars.registerHelper('commaSeperatedList', function(context, fn) {
+        var length, list = ' ';
 
-          length = context.length -1;
+        length = context.length -1;
 
-          _.each(context, function(val, key) {
-            // Had some trouble getting the 'fn' to work here so simply adding to the string directly
-            // This means we need to escape ourselves...
-            list += val.replace(/</g, '&lt;')
-              .replace(/>/g, '&gt;');
+        _.each(context, function(val, key) {
+          // Had some trouble getting the 'fn' to work here so simply adding to the string directly
+          // This means we need to escape ourselves...
+          list += val.replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
 
-            if(key < length) {
-              list += ', ';
-            }
-          });
-
-          return list;
+          if(key < length) {
+            list += ', ';
+          }
         });
 
-        Handlebars.registerPartial("fish", snippet);
-        var compiled = Handlebars.compile(template);
-        
-        html = compiled(data);
+        return list;
+      });
+
+      Handlebars.registerPartial("fish", snippet);
+      var compiled = Handlebars.compile(template);
+      
+      html = compiled(data);
     }
        
       end = new Date();

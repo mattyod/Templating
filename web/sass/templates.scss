@@ -15,7 +15,7 @@ body {
   background:#999;
   min-height:100%;
   height:100%;
-  @include background-image(linear-gradient(#999, #333));  
+  @include background-image(linear-gradient(#999, #333));
 }
 #view {  
   width:820px;
@@ -31,6 +31,44 @@ body {
     padding:20px;
     background:#fff; 
     border-radius:10px;
+    overflow:hidden;
+
+    .intro {
+      float:left;
+      width:500px;      
+    }
+
+    .nav {
+      list-style-type:none;
+      float:right;
+      margin-left:20px;
+
+      li {
+        font-weight:bold;                  
+        text-indent:10px;
+        @include border-radius(5px);
+        width:150px;                  
+        line-height:2em;
+        margin:0 0 5px 0;
+        border:2px solid #666;     
+        background:#999;
+        color:#fff;
+        @include text-shadow(#333, 1px, 1px, 1px);
+
+        a {
+          @include border-radius(5px);
+          @include background-image(radial-gradient(#eee, #999));  
+          @include text-shadow(#333, 0, 0, 0);        
+          display:block;
+          text-decoration:none;
+
+          &:hover {
+            @include background-image(radial-gradient(#eee, #777));
+            text-decoration:underline;
+          }
+        }
+      }
+    }
 
     ul {
       list-style-position:inside;
@@ -73,6 +111,7 @@ body {
     font-size:2em;
   }
   h2 {
+    clear:left;
     font-size:1.8em;
     padding:0 0 7px 0;
   }
