@@ -11,8 +11,8 @@
 ## With Node web service
 
     Install [node.js](http://nodejs.org/)
-
-    If you don't have it already set up Git [github](http://help.github.com/win-set-up-git/)
+[This link](http://example.net/)
+    If you don't have it already [set up Git](http://help.github.com/win-set-up-git/)
     
     Either follow the client code only instructions or preferably run:
     
