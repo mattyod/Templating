@@ -45,10 +45,13 @@ $(function() {
           snippet += data.data[category][subCount];
 
           // Add comma
-          if(subCount < length) {
+          if(subCount < (length -1)) {
             snippet += ', ';
           }
         }
+        
+        // Add the full stop
+        snippet += '.';
 
         return snippet;
       }
