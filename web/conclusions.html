@@ -61,7 +61,7 @@
                     <h2>To wrap up</h2>
                     <p>The idea of deploying a Node.js service layer to provide templates to the client would probably give the environments team palpitations. However, it wouldn't need to actually be deployed into a production environment.</p>
                     <p>My suggestion at this point is that template files are created and managed in development environments. Once ready they can also be compiled in the development environment and then served as static JavaScript files for production.</p>
-                    <p>These compiled methods would prbably be small enough to be all served in one static file but depending on how many we end up with it may make sense to provide some sort of service that can package them as requested.</p>
+                    <p>These compiled methods would probably be small enough to be all served in one static file but depending on how many we end up with it may make sense to provide some sort of service that can package them as requested.</p>
                     <p>My recommendation for implementing this would be Jade.js with a Node.js service to compile templates in development and then render.js on the client present them.<p> 
                 </div>                
                 <ul class="nav">
