@@ -9,11 +9,61 @@
     </head>
     <body>
         <div id="view">
-            <div id="article">
+            <div id="article" class="conclusions">
                 <div class="intro">
                     <h1>Templating comparison: conclusions</h1>
-                    <p>Coming soon...</p>
-                </div>
+                    
+                    <h2>Performance</h2>
+                    <p>My first assumption when starting this investigation was that performance would be an important factor here. However, as we can see from our test renders it's rarely going to be an issue. Sure performance is always important but I think there are going to be very few cases where there is any real noticable impact whatever solution we choose.</p>                
+                    <p>Native scripting is clearly the most performant but we are looking at maybe fractions of a milisecond for the example we have used. The load time for the extra code involved is probably far more of an issue here.</p>
+                    <P>Dust running on IE8 (Not tested on other IE browsers) is probably the only engine that even begins to present issues here and this is mostly due to compiling the templates client side, which could be circumnaviagetd by pre compiling the templates.</p>                    
+                    
+                    <h3><span>&#10026;</span> Recommendation</h3>
+                    <p>I would downgrade the significance of this. It's something that we should continue to keep an eye on but in reality is unlikely to make any noticable impact on page render speeds. Other factors such as the ease of template creation and maintenance should outweigh this.</p>   
+                    
+                    <h3><span>&#9312;</span> Winner</h3>
+                    <p>Underscore &#038; doT but the differences aren't really enough to matter.</p>
+                    
+
+                    <h2>Ease of Implementation</h2>
+                    <p>Dust & Handelbars both required changes to the data format for successful implementaion. For me this is a deal breaker, if we need to convert data or re-write service layers to suit our templating library then performance and productivity will suffer.</p>
+                    <p>My initial thoughts where that the mixing of template syntax and inline javascript was somewhat defeating the point, however, after experimenting with various solutions I found that the extra flexibility this provided was worth the muddying of waters.</p>
+                    <p>In both underscore and doT I did find that the waters quickly became a little too muddy and debugging escaped JavaScript was something of a pain point.</p>
+                    <p>In my opinion Jade managed to get the balance just about right, keeping the scripting clean with the use of indentation to infer scope.</p>
+                    
+                    <h3><span>&#10026;</span> Recommendation</h3>
+                    <p>After exploring this area in more detail I really do feel that this is <em>the</em> most important factor for any templating solution. My belief is that template files should be easily maintainable seperate files that can be managed without any need to understand the business logic surrounding them.</p>
+
+                    <h3><span>&#9312;</span> Winner</h3>
+                    <p>Jade, for me this was by far the most natural and instinctive templating structure.</p>
+
+                    <h2>Flexibility</h2>
+                    <p>Starting with a preference for a more 'pure' templating syntax such as that of Dust or Handlebars it quickly became apparant that these where also more limiting. You need to rely upon checks and assertions provided that can make your template more verbose. With both of these libraries we had to make positive assertions against the presence of content, i.e. "if dogs > render dogs list". With the mixed implementations more succinct tests could be carried out, such as simply itterating each node of an object and then asserting it's content type - i.e. empty, object or array.</p>
+
+                    <h3><span>&#10026;</span> Recommendation</h3>
+                    <p>Contrary to how I felt before I started this exercise I&#039;d have to recommend a mixed approach (JavaScript & templating syntax) solution. This can make templates a little harder to create and interpret as a human but the additional felxibility that it provides, is I think worth it.</p>
+
+                    <h3><span>&#9312;</span> Winner</h3>
+                    <p>Jade again. It got the balance just right for me.</p>
+
+
+                    <h2>File size</h2>
+                    <p>None of the templating libraries where of a size where it would really cause any significant over head in this area. Handlebars being the largest at 29kb minified.</p>
+                    <p>Others such as underscore, doT and render.js (for Jade) where tiny 1 or 2kb.</p>
+
+                    <h3><span>&#10026;</span> Recommendation</h3>
+                    <p>Non of these solutions present a real issue here.</p>
+
+                    <h3><span>&#9312;</span> Winner</h3>
+                    <p>Jade's render.js for server side compiled templates was the smallest at 1.3k but doT and underscore are close enough.</p>
+
+
+                    <h2>To wrap up</h2>
+                    <p>The idea of deploying a Node.js service layer to provide templates to the client would probably give the environments team palpitations. However, it wouldn't need to actually be deployed into a production environment.</p>
+                    <p>My suggestion at this point is that template files are created and managed in development environments. Once ready they can also be compiled in the development environment and then served as static JavaScript files for production.</p>
+                    <p>These compiled methods would prbably be small enough to be all served in one static file but depending on how many we end up with it may make sense to provide some sort of service that can package them as requested.</p>
+                    <p>My recommendation for implementing this would be Jade.js with a Node.js service to compile templates in development and then render.js on the client present them.<p> 
+                </div>                
                 <ul class="nav">
                     <li><a href="/">About</a></li>
                     <li><a href="tests/the-problem.html">the problem</a></li>
@@ -28,4 +78,4 @@
             </div>
         </div>
     </body>
-</html>
+</html> 

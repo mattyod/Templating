@@ -33,6 +33,18 @@ body {
     border-radius:10px;
     overflow:hidden;
 
+    &.conclusions {
+      h3 {
+      font-size:1.3em;     
+      line-height:1.4em;
+       span {              
+        font-size:1.4em;          
+        color:#0c0;
+        @include text-shadow(#333 1px 1px 1px);        
+       }       
+      }
+    }
+
     .intro {
       float:left;
       width:500px;      
