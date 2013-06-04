@@ -16,12 +16,12 @@ If you don't have it already: [set up Git](http://help.github.com/win-set-up-git
     
 Either follow the client code only instructions or preferably run:
 
-$ git clone http://github.com/mattyod/Templating
+    $ git clone http://github.com/mattyod/Templating
 
 Navigate to that folder (on the standard command line) and type:
 
-node server.js
+    node server.js
 
 You should then get a message: 'Server running on port 1337'
 
-Point your browser at http://localhost:1337/
+Point your browser at [http://localhost:1337/](http://localhost:1337/)
